@@ -27,6 +27,13 @@
         .play-button { transition: transform 0.2s; }
         .play-button:hover { transform: scale(1.05); }
         .info-label { position: absolute; background-color: rgba(255, 255, 255, 0.9); border-width: 2px; padding: 6px 10px; border-radius: 8px; font-weight: 600; text-align: center; opacity: 0; transition: opacity 0.5s; z-index: 20; }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; }
+        @media (max-width: 768px) { 
+            .chart-container { height: 250px; } 
+            .overflow-x-auto table { font-size: 0.75rem; }
+            .grid { gap: 1rem; }
+        }
     </style>
 </head>
 <body class="bg-warm-neutral text-deep-muted antialiased">
@@ -36,10 +43,28 @@
             <div class="flex justify-between items-center h-16">
                 <span class="text-xl font-bold accent-color">The DWC Advantage</span>
                 <div class="hidden md:flex space-x-6">
-                    <a href="#problem" class="hover:accent-color transition-colors">Problem: 2 Columns</a>
-                    <a href="#side-draw-flaw" class="hover:accent-color transition-colors">Problem: Side-Draw</a>
-                    <a href="#solution" class="hover:accent-color transition-colors">The DWC Solution</a>
+                    <a href="#problem" class="hover:accent-color transition-colors">The Problem</a>
+                    <a href="#solution" class="hover:accent-color transition-colors">The Solution</a>
                     <a href="#payoff" class="hover:accent-color transition-colors">The Payoff</a>
+                    <a href="#engineering" class="hover:accent-color transition-colors">Engineering</a>
+                    <a href="#case-studies" class="hover:accent-color transition-colors">Case Studies</a>
+                    <a href="#future" class="hover:accent-color transition-colors">Future</a>
+                </div>
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden bg-white border-t">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#problem" class="block px-3 py-2 hover:bg-gray-100 rounded">The Problem</a>
+                    <a href="#solution" class="block px-3 py-2 hover:bg-gray-100 rounded">The Solution</a>
+                    <a href="#payoff" class="block px-3 py-2 hover:bg-gray-100 rounded">The Payoff</a>
+                    <a href="#engineering" class="block px-3 py-2 hover:bg-gray-100 rounded">Engineering</a>
+                    <a href="#case-studies" class="block px-3 py-2 hover:bg-gray-100 rounded">Case Studies</a>
+                    <a href="#future" class="block px-3 py-2 hover:bg-gray-100 rounded">Future</a>
                 </div>
             </div>
         </div>
@@ -48,20 +73,117 @@
     <main>
         <section id="hero" class="py-20 md:py-32 text-center">
             <div class="max-w-4xl mx-auto px-4">
-                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">A Hidden Energy Hog, and Its Brilliant Fix.</h1>
-                <p class="text-lg md:text-xl text-gray-600 mb-8">Distillation is essential for modern industry, but it consumes a staggering 3% of the world's energy. Conventional methods are inefficient by design. A technology called the Divided Wall Column (DWC) offers a fundamentally smarter path forward.</p>
-                <a href="#problem" class="inline-block accent-bg text-white font-bold py-3 px-8 rounded-full text-lg hover:opacity-90 transition-opacity">Discover How It Works</a>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">Process Intensification in Practice</h1>
+                <h2 class="text-2xl md:text-3xl accent-color font-semibold mb-6">A Comprehensive Report on the Energy and Economic Advantages of Divided Wall Column Technology</h2>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">Distillation consumes 3% of the world's energy and 40-50% of a typical refinery's energy budget. The Divided Wall Column offers a proven solution that can cut energy consumption by up to 40% while reducing capital costs by 30%.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#problem" class="inline-block accent-bg text-white font-bold py-3 px-8 rounded-full text-lg hover:opacity-90 transition-opacity">Discover the Technology</a>
+                    <a href="#case-studies" class="inline-block border-2 accent-border accent-color font-bold py-3 px-8 rounded-full text-lg hover:bg-teal-50 transition-colors">See Real Results</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary -->
+        <section id="executive-summary" class="py-16 bg-gradient-to-br from-teal-50 to-blue-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Executive Summary</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">The foundational benefit of the DWC is its ability to correct a fundamental thermodynamic flaw inherent in traditional multi-column distillation sequences, known as the "remixing effect."</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl font-bold accent-color mb-2">40%</div>
+                        <div class="text-gray-600">Energy & OPEX Savings</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl font-bold accent-color mb-2">30%</div>
+                        <div class="text-gray-600">Capital Cost Reduction</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl font-bold accent-color mb-2">50%</div>
+                        <div class="text-gray-600">Plant Footprint Reduction</div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-4">Key Benefits</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">✓</span>
+                                <span>Eliminates the thermodynamic inefficiency of remixing</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">✓</span>
+                                <span>Consolidates two columns into one efficient unit</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">✓</span>
+                                <span>Proven technology with hundreds of units in operation globally</span>
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">✓</span>
+                                <span>Mature industrial solution with robust control strategies</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">✓</span>
+                                <span>Enables smaller, cleaner, more profitable processes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">✓</span>
+                                <span>Critical advantage for both new projects and revamps</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Energy Dilemma -->
+        <section id="energy-dilemma" class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Energy Dilemma of Industrial Distillation</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">To fully appreciate the significance of the Divided Wall Column, one must first grasp the colossal scale of energy consumption associated with conventional distillation.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-red-50 p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold text-red-600 mb-2">95%</div>
+                        <div class="text-gray-700">of liquid separations use distillation</div>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold text-orange-600 mb-2">40-50%</div>
+                        <div class="text-gray-700">of refinery energy consumption</div>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-lg text-center">
+                        <div class="text-3xl font-bold text-yellow-600 mb-2">3%</div>
+                        <div class="text-gray-700">of world's total energy</div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-4">The Compounding Effect</h3>
+                    <p class="text-gray-600 mb-4">The sheer scale of distillation's energy use creates a compounding effect for any efficiency improvements. A percentage-based saving that might seem modest in another context becomes a strategic transformation when applied to such a massive baseline.</p>
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-teal-500">
+                        <p class="font-semibold">Example Impact:</p>
+                        <p class="text-gray-600">If distillation accounts for 40% of a plant's energy budget, a technology that reduces distillation energy use by 30% effectively cuts the entire plant's energy consumption by 12% (0.40 × 0.30).</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="problem" class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Problem 1: The Inefficient Two-Column Sequence</h2>
-                    <p class="max-w-3xl mx-auto text-gray-600">The standard method uses two massive columns to separate three components (A, B, C). This process has a core flaw that wastes a tremendous amount of energy.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Conventional Method and Its Hidden Inefficiency</h2>
+                    <p class="max-w-4xl mx-auto text-gray-600 text-lg">The standard method uses two massive columns to separate three components (A, B, C). This process has a fundamental flaw called the "remixing effect" that wastes tremendous energy.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-16">
                     <div id="conventional-animation-container" class="relative h-[500px]">
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
                             <div class="flex justify-center items-start gap-4 h-[400px]">
@@ -84,26 +206,52 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-4">The "Remixing Effect": A Costly Mistake</h3>
-                        <p class="text-gray-600 mb-4">In the first column, energy is used to separate the middle component ('B'). But because there's nowhere for it to go, it falls back down and **remixes** with the heavy component ('C'). The energy used for that initial separation is completely wasted.</p>
-                        <p class="text-gray-600 font-semibold">The second column then has to use a huge amount of new energy to separate 'B' and 'C' all over again. It's like sorting something, then deliberately scrambling it and having to sort it a second time.</p>
+                        <h3 class="text-2xl font-bold mb-4">The "Remixing Effect": A Costly Thermodynamic Flaw</h3>
+                        <p class="text-gray-600 mb-4">In the first column, energy is expended to separate the middle component ('B') from the others. Component 'B' reaches its highest concentration in the middle section, having been substantially separated from both 'A' and 'C'.</p>
+                        <p class="text-gray-600 mb-4">However, the conventional design cannot take advantage of this partial separation. Because the sole purpose of the first column is to remove pure 'A' from the top, this concentrated stream of 'B' continues down the column where it is diluted and <strong>remixed</strong> with component 'C'.</p>
+                        <p class="text-gray-600 font-semibold">This remixing represents a significant thermodynamic inefficiency - an increase in entropy that translates directly to wasted energy. The second column must then use redundant energy to separate B and C all over again.</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="side-draw-flaw" class="py-16">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Problem 2: The Flawed Side-Draw Column</h2>
-                    <p class="max-w-3xl mx-auto text-gray-600">"Why not just use one column with a side exit?" This seems simpler, but it introduces a new, critical problem: it's nearly impossible to get a pure product.</p>
+                <!-- The Chain of Consequences -->
+                <div class="bg-red-50 p-8 rounded-lg mb-16">
+                    <h3 class="text-2xl font-bold mb-6 text-center">The Chain of Economic Consequences</h3>
+                    <div class="grid md:grid-cols-5 gap-4 text-center">
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-2xl mb-2">1️⃣</div>
+                            <div class="text-sm font-semibold">Remixing Effect</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-2xl mb-2">2️⃣</div>
+                            <div class="text-sm font-semibold">Complete Re-separation Required</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-2xl mb-2">3️⃣</div>
+                            <div class="text-sm font-semibold">Higher Heat Duty</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-2xl mb-2">4️⃣</div>
+                            <div class="text-sm font-semibold">Larger Equipment</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-2xl mb-2">5️⃣</div>
+                            <div class="text-sm font-semibold">Higher OPEX & CAPEX</div>
+                        </div>
+                    </div>
                 </div>
-                
-                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                     <div>
-                        <h3 class="text-2xl font-bold mb-4">Feed-Product Contamination</h3>
-                        <p class="text-gray-600 mb-4">In this design, the feed enters and immediately mixes with all the components inside. When the middle product 'B' is withdrawn from the side, it's inevitably **contaminated** with bits of 'A' and 'C' from the feed.</p>
-                        <p class="text-gray-600 font-semibold">To get higher purity, operators have to crank up the energy (reflux) to try and "wash" the impurities away from the side draw. This is inefficient, and perfect purity is often impossible to achieve this way.</p>
+
+                <!-- Side-Draw Alternative -->
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">The Flawed Alternative: Conventional Side-Draw Column</h3>
+                    <p class="max-w-3xl mx-auto text-gray-600">Another approach uses a single column with a side draw, but this suffers from critical contamination issues.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Direct Feed-Product Contamination</h4>
+                        <p class="text-gray-600 mb-4">The fundamental problem is that the feed enters the column and mixes directly with the internal liquid and vapor traffic. The side product is inevitably contaminated by other components in the feed.</p>
+                        <p class="text-gray-600 mb-4">To improve purity, operators must use significantly higher energy (reflux ratio) to "wash" unwanted components away from the side-draw tray.</p>
+                        <p class="text-gray-600 font-semibold">Even with increased energy input, there are practical limits to the purity achievable, making this approach thermodynamically suboptimal.</p>
                     </div>
                     <div id="sidedraw-animation-container" class="relative h-[500px]">
                          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
@@ -118,30 +266,31 @@
                              <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2" id="play-sidedraw-container">
                                 <button id="play-sidedraw" class="play-button accent-bg text-white rounded-full p-4 shadow-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
-                                </button>
-                                <p class="mt-2 font-semibold">Play Animation</p>
-                            </div>
-                             <div id="contam-label" class="info-label border-orange-400 text-orange-700" style="top: 50%; left: 80%;">Purity<br>Compromised!</div>
+                                    </button>
+                                    <p class="mt-2 font-semibold">Play Animation</p>
+                                </div>
+                                <div id="contam-label" class="info-label border-orange-400 text-orange-700" style="top: 50%; left: 80%;">Purity<br>Compromised!</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="solution" class="py-16 bg-white">
+        <section id="solution" class="py-16 bg-gradient-to-br from-teal-50 to-blue-50">
             <div class="max-w-6xl mx-auto px-4">
                  <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">The Smart Solution: One Column, No Compromises</h2>
-                    <p class="max-w-3xl mx-auto text-gray-600">The DWC solves *both* problems. A vertical wall inside the column creates two zones, preventing remixing and contamination simultaneously.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Divided Wall Column: An Elegant Thermodynamic Solution</h2>
+                    <p class="max-w-4xl mx-auto text-gray-600 text-lg">The DWC is a powerful example of process intensification that provides a direct and elegant solution to the remixing problem. It's the practical realization of the thermodynamically ideal "Petlyuk column" configuration.</p>
                 </div>
                 
-                 <div class="grid md:grid-cols-2 gap-8 items-center">
+                 <div class="grid md:grid-cols-2 gap-8 items-center mb-16">
                     <div id="dwc-animation-container" class="relative h-[500px]">
                          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
                             <div class="flex justify-center items-start h-[400px]">
                                 <div class="w-1/2 h-full column-shell" id="dwc-shell">
                                      <div class="divider-wall" style="height: 50%; top: 25%;"></div>
-                                     <div class="absolute top-2 left-1/2 -translate-x-1/2 text-sm font-bold">A</div>
+                                     <div class="absolute top-2 left-1/4 -translate-x-1/2 text-sm font-bold">Feed</div>
+                                     <div class="absolute top-2 right-1/4 translate-x-1/2 text-sm font-bold">A</div>
                                      <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-bold">C</div>
                                      <div class="absolute top-1/2 right-0 -translate-y-1/2 text-sm font-bold mr-[-30px]">Pure B</div>
                                      <div class="absolute w-4 h-10 bg-gray-400" style="top: calc(50% - 20px); right: -16px;"></div>
@@ -157,36 +306,495 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-4">An Elegant Thermodynamic Fix</h3>
-                        <p class="text-gray-600 mb-4">The feed enters on one side of the wall. Here, a rough separation occurs. The lightest ('A') goes up, heaviest ('C') goes down.</p>
-                        <p class="text-gray-600 font-semibold">Crucially, the pure middle product ('B') is drawn from the *other* side of the wall. The wall physically blocks the feed from contaminating the final product. This simple barrier eliminates both the remixing effect and the purity problem, allowing for a perfect separation with minimal energy.</p>
+                        <h3 class="text-2xl font-bold mb-4">How the DWC Works</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                <h4 class="font-semibold text-blue-700">1. Feed and Pre-fractionation</h4>
+                                <p class="text-gray-600">The multicomponent feed enters one side of the dividing wall (pre-fractionator). A preliminary separation occurs with lightest components moving up, heaviest down.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                                <h4 class="font-semibold text-green-700">2. Thermal Coupling</h4>
+                                <p class="text-gray-600">Vapor and liquid exchange between the two sides through thermal coupling, optimizing mass and heat transfer paths.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                                <h4 class="font-semibold text-purple-700">3. Pure Product Withdrawal</h4>
+                                <p class="text-gray-600">High-purity products are withdrawn from the uncontaminated product side, completely preventing the remixing effect.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Innovation -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-4 text-center">The Key Innovation: Physical Isolation</h3>
+                    <p class="text-gray-600 mb-4">By physically isolating the pre-fractionation zone (feed side) from the final product purification zone (product side), the DWC completely prevents the remixing effect. The middle component 'B' is never allowed to mix with the heavy component 'C' after its initial separation from 'A'.</p>
+                    <p class="text-gray-600 font-semibold">The energy put into the system is used progressively and efficiently to sharpen the separation of all three components, bringing the real-world process much closer to the thermodynamic ideal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="payoff" class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">A Paradigm Shift in Efficiency: Quantifying the DWC Advantage</h2>
+                    <p class="max-w-4xl mx-auto text-gray-600 text-lg">The theoretical benefits of the Divided Wall Column have been conclusively validated through decades of industrial implementation and academic study. The technology delivers transformative efficiency gains across multiple metrics.</p>
+                </div>
+
+                <!-- Comprehensive Comparison Table -->
+                <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-lg mb-16 overflow-x-auto">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Conventional vs. DWC: Complete Comparison</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b-2 border-gray-300">
+                                    <th class="text-left py-3 px-2 font-bold">Feature</th>
+                                    <th class="text-center py-3 px-2 font-bold">Conventional Sequence</th>
+                                    <th class="text-center py-3 px-2 font-bold">Divided Wall Column</th>
+                                    <th class="text-center py-3 px-2 font-bold accent-color">DWC Advantage</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-2 font-semibold">Column Shells</td>
+                                    <td class="text-center py-3 px-2">2</td>
+                                    <td class="text-center py-3 px-2">1</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">-1 Unit</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 bg-gray-50">
+                                    <td class="py-3 px-2 font-semibold">Reboilers</td>
+                                    <td class="text-center py-3 px-2">2</td>
+                                    <td class="text-center py-3 px-2">1</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">-1 Unit</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-2 font-semibold">Condensers</td>
+                                    <td class="text-center py-3 px-2">2</td>
+                                    <td class="text-center py-3 px-2">1</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">-1 Unit</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 bg-gray-50">
+                                    <td class="py-3 px-2 font-semibold">Plant Footprint</td>
+                                    <td class="text-center py-3 px-2">100%</td>
+                                    <td class="text-center py-3 px-2">~50%</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">Up to 50% Reduction</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-2 font-semibold">Energy Consumption</td>
+                                    <td class="text-center py-3 px-2">100%</td>
+                                    <td class="text-center py-3 px-2">60-70%</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">30-40% Savings</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 bg-gray-50">
+                                    <td class="py-3 px-2 font-semibold">Capital Cost</td>
+                                    <td class="text-center py-3 px-2">100%</td>
+                                    <td class="text-center py-3 px-2">70-80%</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">20-30% Savings</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-3 px-2 font-semibold">Total Annualized Cost</td>
+                                    <td class="text-center py-3 px-2">100%</td>
+                                    <td class="text-center py-3 px-2">60-70%</td>
+                                    <td class="text-center py-3 px-2 font-semibold text-green-600">30-40% Savings</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Energy Savings (OPEX)</h3>
+                        <div class="chart-container"><canvas id="energyChart"></canvas></div>
+                        <p class="text-sm text-gray-600 mt-4 text-center">Typical energy savings of 30-40% translate directly to proportional OPEX reductions</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Equipment Cost (CAPEX)</h3>
+                        <div class="chart-container"><canvas id="capexChart"></canvas></div>
+                        <p class="text-sm text-gray-600 mt-4 text-center">Eliminates entire column shell, reboiler, condenser, and associated equipment</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Plant Footprint</h3>
+                        <div class="chart-container"><canvas id="footprintChart"></canvas></div>
+                        <p class="text-sm text-gray-600 mt-4 text-center">Critical advantage for space-constrained facilities and modular designs</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Total Annualized Cost</h3>
+                         <div class="chart-container"><canvas id="tacChart"></canvas></div>
+                         <p class="text-sm text-gray-600 mt-4 text-center">Combined OPEX and CAPEX benefits result in compelling ROI</p>
+                    </div>
+                </div>
+
+                <!-- Payback Period Highlight -->
+                <div class="bg-gradient-to-r from-green-50 to-teal-50 p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-4">Exceptional Return on Investment</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="text-4xl font-bold accent-color mb-2">1.54 years</div>
+                            <p class="text-gray-600">DWC Payback Period</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-gray-500 mb-2">2.23 years</div>
+                            <p class="text-gray-600">Conventional System Payback</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-4 font-semibold">Case study: LPG recovery unit comparison shows DWC provides faster ROI despite lower initial capital cost</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Real-World Success Stories</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">Industrial case studies provide powerful validation of DWC technology's transformative benefits in actual operating environments.</p>
+                </div>
+
+                <!-- Case Study 1: ExxonMobil -->
+                <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="md:col-span-2">
+                            <h3 class="text-2xl font-bold mb-4 text-blue-700">ExxonMobil Fawley Refinery: Xylene Column Revamp</h3>
+                            <p class="text-gray-600 mb-4">A landmark project involved retrofitting a conventional xylene recovery column into a DWC, demonstrating the technology's potential for both grassroots and brownfield applications.</p>
+                            <div class="space-y-3">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold">Original Configuration:</h4>
+                                    <p class="text-gray-600">Conventional tray column, 3800mm/4300mm diameter, 51 trays, vapor side-stream withdrawal</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold">DWC Configuration:</h4>
+                                    <p class="text-gray-600">Retrofitted with dividing wall (trays 14-39), 50 active trays, liquid side-draw from tray 28</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <div class="bg-green-100 p-6 rounded-lg text-center mb-4">
+                                <div class="text-3xl font-bold text-green-600 mb-2">50%+</div>
+                                <div class="text-gray-700">Energy Savings (Same Throughput)</div>
+                            </div>
+                            <div class="bg-blue-100 p-6 rounded-lg text-center">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">25%+</div>
+                                <div class="text-gray-700">Energy Savings (Higher Throughput)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2: LPG Recovery -->
+                <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-green-700">Gas Plant LPG Recovery Unit Comparison</h3>
+                    <p class="text-gray-600 mb-6">Detailed techno-economic study comparing new conventional two-column sequence with new DWC design for LPG recovery.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-red-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-red-700 mb-4">Conventional Design</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Capital Cost:</span>
+                                    <span>$241.3 million</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Annual OPEX:</span>
+                                    <span>$37.3 million</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Payback Period:</span>
+                                    <span>2.23 years</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Total Height:</span>
+                                    <span>39.5m</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-green-700 mb-4">DWC Design</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Capital Cost:</span>
+                                    <span>$192.0 million <span class="text-green-600">(-20.4%)</span></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Annual OPEX:</span>
+                                    <span>$23.7 million <span class="text-green-600">(-36.4%)</span></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Payback Period:</span>
+                                    <span>1.54 years <span class="text-green-600">(-31%)</span></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Total Height:</span>
+                                    <span>36.6m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BASF Success -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4 text-purple-700">BASF SE: Global DWC Implementation</h3>
+                        <p class="text-gray-600 mb-6">As a pioneer of DWC technology, chemical giant BASF operates more than 50 DWCs across its global facilities, demonstrating the technology's maturity, reliability, and proven economic benefits at industrial scale.</p>
+                        <div class="bg-purple-100 p-6 rounded-lg inline-block">
+                            <div class="text-4xl font-bold text-purple-600 mb-2">50+</div>
+                            <div class="text-gray-700">DWCs in Operation Worldwide</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="payoff" class="py-16">
+        <!-- Engineering Section -->
+        <section id="engineering" class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
-                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">The Payoff: Massive, Measurable Savings</h2>
-                    <p class="max-w-3xl mx-auto text-gray-600">This elegant design, which avoids both the remixing of two-column systems and the purity issues of side-draw columns, leads to dramatic reductions in cost and resource use.</p>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">From Blueprint to Operation: Engineering a DWC</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">While the benefits are clear, successful implementation requires sophisticated design, mechanical engineering, and control approaches that have evolved from complex to standard engineering practice.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold mb-4 text-center">Energy Savings (OPEX)</h3>
-                        <div class="chart-container"><canvas id="energyChart"></canvas></div>
+
+                <!-- Design Complexity -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4">Design Complexity & Degrees of Freedom</h3>
+                        <p class="text-gray-600 mb-4">DWC design is inherently more complex due to additional optimization parameters:</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">•</span>
+                                <span><strong>Liquid Split Ratio:</strong> Distribution of reflux between feed and product sides</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">•</span>
+                                <span><strong>Vapor Split Ratio:</strong> Distribution of vapor flow up each side</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">•</span>
+                                <span><strong>Wall Geometry:</strong> Height and vertical placement within column</span>
+                            </li>
+                        </ul>
+                        <div class="bg-blue-100 p-4 rounded-lg mt-4">
+                            <p class="text-blue-800 font-semibold">Solution: Modern process simulation software (Aspen Plus, HYSYS) is indispensable for design and optimization.</p>
+                        </div>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold mb-4 text-center">Equipment Cost (CAPEX)</h3>
-                        <div class="chart-container"><canvas id="capexChart"></canvas></div>
+
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4">Mechanical Design Imperatives</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-red-500">
+                                <h4 class="font-bold text-red-700">The Dividing Wall</h4>
+                                <p class="text-gray-600">Must handle thermal stress from temperature differences. Modern non-welded/bolted constructions allow thermal expansion.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                <h4 class="font-bold text-blue-700">Column Internals</h4>
+                                <p class="text-gray-600">Choice between trays (robust, easy balancing) vs. packing (lower pressure drop, vacuum applications).</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                                <h4 class="font-bold text-green-700">Flow Distribution</h4>
+                                <p class="text-gray-600">Liquid split actively controlled; vapor split typically passive but critical for design.</p>
+                            </div>
+                        </div>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold mb-4 text-center">Plant Footprint</h3>
-                        <div class="chart-container"><canvas id="footprintChart"></canvas></div>
+                </div>
+
+                <!-- Control Systems -->
+                <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-8 rounded-lg mb-16">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Control & Operability: Myth vs. Reality</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-red-100 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-red-700 mb-3">Historical Myth</h4>
+                            <p class="text-gray-700">"DWCs are too complex to control due to high integration and variable interaction."</p>
+                        </div>
+                        <div class="bg-green-100 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-green-700 mb-3">Industrial Reality</h4>
+                            <p class="text-gray-700">"Hundreds of DWCs operate stably worldwide using conventional PID controllers and advanced MPC strategies."</p>
+                        </div>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold mb-4 text-center">Total Annualized Cost</h3>
-                         <div class="chart-container"><canvas id="tacChart"></canvas></div>
+                    <div class="bg-white p-6 rounded-lg mt-6">
+                        <h4 class="text-lg font-bold mb-3">Advanced Control Benefits</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold accent-color">5-10%</div>
+                                <div class="text-gray-600">Additional Energy Reduction with MPC</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold accent-color">15%</div>
+                                <div class="text-gray-600">Throughput Increase Potential</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Evolution -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Technology Evolution: From Theory to Practice</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-2xl">💻</span>
+                            </div>
+                            <h4 class="font-bold mb-2">Process Simulation</h4>
+                            <p class="text-gray-600 text-sm">Powerful software enabled complex multi-variable design calculations</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-2xl">🔧</span>
+                            </div>
+                            <h4 class="font-bold mb-2">Mechanical Innovation</h4>
+                            <p class="text-gray-600 text-sm">Non-welded walls and high-performance packing solved hardware challenges</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-2xl">🎛️</span>
+                            </div>
+                            <h4 class="font-bold mb-2">Control Systems</h4>
+                            <p class="text-gray-600 text-sm">Modern DCS and sophisticated algorithms enabled reliable operation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Applications -->
+        <section id="future" class="py-16 bg-gradient-to-br from-purple-50 to-pink-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Future of Integrated Distillation</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">The DWC is not a static technology but a dynamic platform for process intensification, with principles being extended to tackle more complex separations and integrate with advanced processes.</p>
+                </div>
+
+                <!-- Beyond Three Products -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-purple-700">Beyond Three Products</h3>
+                        <div class="space-y-4">
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-purple-700">Kaibel Column (4 Products)</h4>
+                                <p class="text-gray-600">First extension of DWC with additional packed section and second side draw for four-product separation.</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-purple-700">Multi-Partition Columns (5+ Products)</h4>
+                                <p class="text-gray-600">Advanced designs with multiple walls offering up to 50% savings but increased complexity.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 text-blue-700">Expanding Applications</h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-blue-700">Biofuels & Sustainability</h4>
+                                <p class="text-gray-600">DWC reduces energy by 27% and costs by 25% in biodiesel purification processes.</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-blue-700">Natural Gas Liquids</h4>
+                                <p class="text-gray-600">Condensing four-tower NGL fractionation into efficient three-tower systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revolutionary Applications -->
+                <div class="bg-white p-8 rounded-lg shadow-md mb-16">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Revolutionary Future Applications</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-green-700 mb-3">Reactive DWC (R-DWC)</h4>
+                            <p class="text-gray-600 mb-3">Integration of chemical reaction and separation in a single DWC unit, combining reactive distillation benefits with DWC efficiency.</p>
+                            <div class="bg-green-100 p-3 rounded text-center">
+                                <span class="font-semibold text-green-700">Replace entire reactor + separation train with single unit</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-blue-700 mb-3">Carbon Capture Enhancement</h4>
+                            <p class="text-gray-600 mb-3">DWC principles applied to solvent regeneration in amine scrubbing systems could significantly reduce energy penalties.</p>
+                            <div class="bg-blue-100 p-3 rounded text-center">
+                                <span class="font-semibold text-blue-700">Lower cost & energy penalty for carbon capture</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform Technology -->
+                <div class="bg-gradient-to-r from-indigo-100 to-purple-100 p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-4">DWC: A Platform Technology</h3>
+                    <p class="text-gray-700 mb-6 max-w-4xl mx-auto">The clear evolutionary path from basic three-product DWC to multi-partition and reactive configurations reveals that the DWC is not a single product but a flexible, scalable platform technology. The core concept of thermodynamic efficiency through internal thermal coupling is a robust design philosophy being continuously adapted for increasingly complex challenges.</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-lg font-bold text-indigo-600">Modular Evolution</div>
+                            <p class="text-gray-600 text-sm">New functionalities integrated onto proven core</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-lg font-bold text-indigo-600">Scalable Design</div>
+                            <p class="text-gray-600 text-sm">Principles applicable from simple to complex separations</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-lg font-bold text-indigo-600">Future Potential</div>
+                            <p class="text-gray-600 text-sm">Long-term technological trajectory with significant untapped potential</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Recommendations -->
+        <section id="recommendations" class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Conclusion and Strategic Recommendations</h2>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">The DWC has successfully transitioned from theoretical concept to mature, industrially proven technology offering step-change improvements in process efficiency.</p>
+                </div>
+
+                <!-- When to Consider DWC -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-teal-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-teal-700">When to Consider a DWC</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-teal-500">
+                                <h4 class="font-bold">Feed Composition</h4>
+                                <p class="text-gray-600">High concentration of middle-boiling component (60-70 mol%)</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-teal-500">
+                                <h4 class="font-bold">Product Purity</h4>
+                                <p class="text-gray-600">High purity required for middle-boiling side product</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-teal-500">
+                                <h4 class="font-bold">Relative Volatility</h4>
+                                <p class="text-gray-600">Components with similar relative volatilities (difficult separations)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-blue-700">DWC for Revamps</h3>
+                        <p class="text-gray-600 mb-4">Exceptionally powerful tool for retrofitting existing systems within existing footprint:</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span>Drastically cut energy costs and emissions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span>Increase processing capacity</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span>Improve product purity</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span>Enable recovery of new valuable products</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="bg-gradient-to-r from-teal-500 to-blue-500 text-white p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-4">A Call to Action</h3>
+                    <p class="text-lg mb-6 max-w-4xl mx-auto">In the face of persistent economic pressures and urgent global need for industrial decarbonization, the chemical and refining industries can no longer afford to overlook proven, high-impact efficiency technologies.</p>
+                    <p class="text-xl font-semibold mb-6">The question should no longer be "Is a DWC too complex?" but rather "Can we afford NOT to leverage the significant competitive and environmental advantages?"</p>
+                    <div class="bg-white bg-opacity-20 p-6 rounded-lg max-w-4xl mx-auto">
+                        <p class="text-lg font-semibold">For any organization with substantial distillation footprint, a systematic review of existing and planned separation processes against DWC applicability represents one of the most significant opportunities to reduce costs, enhance profitability, and contribute to a more sustainable industrial future.</p>
                     </div>
                 </div>
             </div>
@@ -195,14 +803,49 @@
     </main>
     
     <footer class="bg-gray-800 text-white mt-16">
-        <div class="max-w-6xl mx-auto py-8 px-4 text-center">
-            <p>The Divided Wall Column is a proven, powerful tool for building a more efficient and sustainable industrial future.</p>
-            <p class="text-sm text-gray-400 mt-4">Made by Ahmed Mohamed Sabri (amsamms)</p>
+        <div class="max-w-6xl mx-auto py-12 px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">About This Report</h3>
+                    <p class="text-gray-300">A comprehensive analysis of Divided Wall Column technology, covering theoretical principles, industrial applications, and strategic implementation guidance for engineering managers and decision makers.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Key Takeaways</h3>
+                    <ul class="text-gray-300 space-y-2">
+                        <li>• 30-40% energy and OPEX savings</li>
+                        <li>• 20-30% capital cost reduction</li>
+                        <li>• 50% plant footprint reduction</li>
+                        <li>• Proven technology with 50+ installations</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sources & References</h3>
+                    <p class="text-gray-300 mb-4">This report synthesizes data from 90+ peer-reviewed sources, industrial case studies, and technical publications.</p>
+                    <a href="#" class="text-teal-400 hover:text-teal-300 transition-colors">View Complete Bibliography →</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-300">The Divided Wall Column is a proven, powerful tool for building a more efficient and sustainable industrial future.</p>
+                <p class="text-sm text-gray-400 mt-4">Process Intensification in Practice | Made by Ahmed Mohamed Sabri (amsamms) | July 2025</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
 
             const createParticles = (container, count, type) => {
                 const particles = [];
@@ -388,7 +1031,7 @@
                             }
                         },
                         scales: {
-                            x: { beginAtZero: true, max: 110 }
+                            y: { beginAtZero: true, max: 110 }
                         }
                     }
                 });
@@ -417,9 +1060,12 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });
