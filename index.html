@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The DWC Advantage: Smarter Distillation, Less Energy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-warm-neutral { background-color: #F7F7F7; }
+        .text-deep-muted { color: #333333; }
+        .accent-color { color: #0d9488; }
+        .accent-bg { background-color: #0d9488; }
+        .accent-border { border-color: #0d9488; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 300px; max-height: 350px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .particle { position: absolute; border-radius: 50%; transition: all 4s ease-in-out; }
+        .particle-a { background-color: #38bdf8; width: 10px; height: 10px; z-index: 10; }
+        .particle-b { background-color: #facc15; width: 12px; height: 12px; z-index: 10; }
+        .particle-c { background-color: #f87171; width: 14px; height: 14px; z-index: 10; }
+        .column-shell { background: rgba(229, 231, 235, 0.7); border: 2px solid #9ca3af; border-radius: 20px; position: relative; overflow: hidden; }
+        .divider-wall { position: absolute; width: 4px; background-color: #4b5563; left: 50%; transform: translateX(-50%); z-index: 5; }
+        .play-button { transition: transform 0.2s; }
+        .play-button:hover { transform: scale(1.05); }
+        .info-label { position: absolute; background-color: rgba(255, 255, 255, 0.9); border-width: 2px; padding: 6px 10px; border-radius: 8px; font-weight: 600; text-align: center; opacity: 0; transition: opacity 0.5s; z-index: 20; }
+    </style>
+</head>
+<body class="bg-warm-neutral text-deep-muted antialiased">
+
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <span class="text-xl font-bold accent-color">The DWC Advantage</span>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#problem" class="hover:accent-color transition-colors">Problem: 2 Columns</a>
+                    <a href="#side-draw-flaw" class="hover:accent-color transition-colors">Problem: Side-Draw</a>
+                    <a href="#solution" class="hover:accent-color transition-colors">The DWC Solution</a>
+                    <a href="#payoff" class="hover:accent-color transition-colors">The Payoff</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">A Hidden Energy Hog, and Its Brilliant Fix.</h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">Distillation is essential for modern industry, but it consumes a staggering 3% of the world's energy. Conventional methods are inefficient by design. A technology called the Divided Wall Column (DWC) offers a fundamentally smarter path forward.</p>
+                <a href="#problem" class="inline-block accent-bg text-white font-bold py-3 px-8 rounded-full text-lg hover:opacity-90 transition-opacity">Discover How It Works</a>
+            </div>
+        </section>
+
+        <section id="problem" class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Problem 1: The Inefficient Two-Column Sequence</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">The standard method uses two massive columns to separate three components (A, B, C). This process has a core flaw that wastes a tremendous amount of energy.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div id="conventional-animation-container" class="relative h-[500px]">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
+                            <div class="flex justify-center items-start gap-4 h-[400px]">
+                                <div class="w-1/3 h-full column-shell" id="col1-shell">
+                                    <div class="absolute top-10 left-1/2 -translate-x-1/2 text-sm font-bold">A</div>
+                                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-bold">B+C</div>
+                                </div>
+                                <div class="w-1/3 h-4/5 mt-[80px] column-shell" id="col2-shell">
+                                    <div class="absolute top-10 left-1/2 -translate-x-1/2 text-sm font-bold">B</div>
+                                     <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-bold">C</div>
+                                </div>
+                            </div>
+                            <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2" id="play-conventional-container">
+                                <button id="play-conventional" class="play-button accent-bg text-white rounded-full p-4 shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                                </button>
+                                <p class="mt-2 font-semibold">Play Animation</p>
+                            </div>
+                            <div id="remix-label" class="info-label border-red-400 text-red-700" style="top: 70%; left: 30%;">Wasted Energy!</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">The "Remixing Effect": A Costly Mistake</h3>
+                        <p class="text-gray-600 mb-4">In the first column, energy is used to separate the middle component ('B'). But because there's nowhere for it to go, it falls back down and **remixes** with the heavy component ('C'). The energy used for that initial separation is completely wasted.</p>
+                        <p class="text-gray-600 font-semibold">The second column then has to use a huge amount of new energy to separate 'B' and 'C' all over again. It's like sorting something, then deliberately scrambling it and having to sort it a second time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="side-draw-flaw" class="py-16">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Problem 2: The Flawed Side-Draw Column</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">"Why not just use one column with a side exit?" This seems simpler, but it introduces a new, critical problem: it's nearly impossible to get a pure product.</p>
+                </div>
+                
+                 <div class="grid md:grid-cols-2 gap-8 items-center">
+                     <div>
+                        <h3 class="text-2xl font-bold mb-4">Feed-Product Contamination</h3>
+                        <p class="text-gray-600 mb-4">In this design, the feed enters and immediately mixes with all the components inside. When the middle product 'B' is withdrawn from the side, it's inevitably **contaminated** with bits of 'A' and 'C' from the feed.</p>
+                        <p class="text-gray-600 font-semibold">To get higher purity, operators have to crank up the energy (reflux) to try and "wash" the impurities away from the side draw. This is inefficient, and perfect purity is often impossible to achieve this way.</p>
+                    </div>
+                    <div id="sidedraw-animation-container" class="relative h-[500px]">
+                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
+                            <div class="flex justify-center items-start h-[400px]">
+                                <div class="w-1/2 h-full column-shell" id="sidedraw-shell">
+                                     <div class="absolute top-2 left-1/2 -translate-x-1/2 text-sm font-bold">A</div>
+                                     <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-bold">C</div>
+                                     <div class="absolute top-1/2 right-0 -translate-y-1/2 text-sm font-bold mr-[-35px]">Impure B</div>
+                                     <div class="absolute w-4 h-10 bg-gray-400" style="top: calc(50% - 20px); right: -16px;"></div>
+                                </div>
+                            </div>
+                             <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2" id="play-sidedraw-container">
+                                <button id="play-sidedraw" class="play-button accent-bg text-white rounded-full p-4 shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                                </button>
+                                <p class="mt-2 font-semibold">Play Animation</p>
+                            </div>
+                             <div id="contam-label" class="info-label border-orange-400 text-orange-700" style="top: 50%; left: 80%;">Purity<br>Compromised!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">The Smart Solution: One Column, No Compromises</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">The DWC solves *both* problems. A vertical wall inside the column creates two zones, preventing remixing and contamination simultaneously.</p>
+                </div>
+                
+                 <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div id="dwc-animation-container" class="relative h-[500px]">
+                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
+                            <div class="flex justify-center items-start h-[400px]">
+                                <div class="w-1/2 h-full column-shell" id="dwc-shell">
+                                     <div class="divider-wall" style="height: 50%; top: 25%;"></div>
+                                     <div class="absolute top-2 left-1/2 -translate-x-1/2 text-sm font-bold">A</div>
+                                     <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-bold">C</div>
+                                     <div class="absolute top-1/2 right-0 -translate-y-1/2 text-sm font-bold mr-[-30px]">Pure B</div>
+                                     <div class="absolute w-4 h-10 bg-gray-400" style="top: calc(50% - 20px); right: -16px;"></div>
+                                </div>
+                            </div>
+                             <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2" id="play-dwc-container">
+                                <button id="play-dwc" class="play-button accent-bg text-white rounded-full p-4 shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                                </button>
+                                <p class="mt-2 font-semibold">Play Animation</p>
+                            </div>
+                             <div id="wall-label" class="info-label border-teal-500 text-teal-700" style="top: 50%; left: 45%;">Wall prevents<br>contamination!</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">An Elegant Thermodynamic Fix</h3>
+                        <p class="text-gray-600 mb-4">The feed enters on one side of the wall. Here, a rough separation occurs. The lightest ('A') goes up, heaviest ('C') goes down.</p>
+                        <p class="text-gray-600 font-semibold">Crucially, the pure middle product ('B') is drawn from the *other* side of the wall. The wall physically blocks the feed from contaminating the final product. This simple barrier eliminates both the remixing effect and the purity problem, allowing for a perfect separation with minimal energy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="payoff" class="py-16">
+            <div class="max-w-6xl mx-auto px-4">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">The Payoff: Massive, Measurable Savings</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600">This elegant design, which avoids both the remixing of two-column systems and the purity issues of side-draw columns, leads to dramatic reductions in cost and resource use.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Energy Savings (OPEX)</h3>
+                        <div class="chart-container"><canvas id="energyChart"></canvas></div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Equipment Cost (CAPEX)</h3>
+                        <div class="chart-container"><canvas id="capexChart"></canvas></div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Plant Footprint</h3>
+                        <div class="chart-container"><canvas id="footprintChart"></canvas></div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-center">Total Annualized Cost</h3>
+                         <div class="chart-container"><canvas id="tacChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="max-w-6xl mx-auto py-8 px-4 text-center">
+            <p>The Divided Wall Column is a proven, powerful tool for building a more efficient and sustainable industrial future.</p>
+            <p class="text-sm text-gray-400 mt-4">Made by Ahmed Mohamed Sabri (amsamms)</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const createParticles = (container, count, type) => {
+                const particles = [];
+                for (let i = 0; i < count; i++) {
+                    const p = document.createElement('div');
+                    p.classList.add('particle', `particle-${type}`);
+                    p.style.left = `${Math.random() * 40 + 30}%`;
+                    p.style.top = `${40 + Math.random() * 20}%`;
+                    p.dataset.type = type;
+                    container.appendChild(p);
+                    particles.push(p);
+                }
+                return particles;
+            };
+            
+            const conventionalAnimation = () => {
+                const container = document.getElementById('conventional-animation-container');
+                const col1 = document.getElementById('col1-shell');
+                const col2 = document.getElementById('col2-shell');
+                const remixLabel = document.getElementById('remix-label');
+                container.querySelectorAll('.particle').forEach(p => p.remove());
+
+                const particles = [
+                    ...createParticles(col1, 5, 'a'),
+                    ...createParticles(col1, 5, 'b'),
+                    ...createParticles(col1, 5, 'c')
+                ];
+                
+                setTimeout(() => {
+                    particles.forEach(p => {
+                        const type = p.dataset.type;
+                        if (type === 'a') p.style.transform = `translateY(-180px)`;
+                        else if (type === 'c') p.style.transform = `translateY(180px)`;
+                        else p.style.transform = `translateY(${Math.random()*100-50}px)`;
+                    });
+                }, 100);
+
+                setTimeout(() => {
+                    remixLabel.style.opacity = '1';
+                    particles.forEach(p => {
+                       if (p.dataset.type === 'b') p.style.transform = `translateY(180px)`;
+                    });
+                }, 4100);
+
+                setTimeout(() => {
+                    particles.forEach(p => {
+                       if (p.dataset.type === 'b' || p.dataset.type === 'c') {
+                           p.remove();
+                           const newP = p.cloneNode(true);
+                           newP.style.left = `${Math.random() * 40 + 30}%`;
+                           newP.style.top = `${40 + Math.random() * 20}%`;
+                           col2.appendChild(newP);
+                           setTimeout(() => {
+                               if(newP.dataset.type === 'b') newP.style.transform = `translateY(-150px)`;
+                               else newP.style.transform = `translateY(150px)`;
+                           }, 100);
+                       }
+                    });
+                    remixLabel.style.opacity = '0';
+                }, 8200);
+
+                setTimeout(() => {
+                    document.getElementById('play-conventional-container').style.display = 'block';
+                }, 12300);
+            };
+
+            const sideDrawAnimation = () => {
+                const container = document.getElementById('sidedraw-animation-container');
+                const shell = document.getElementById('sidedraw-shell');
+                const contamLabel = document.getElementById('contam-label');
+                container.querySelectorAll('.particle').forEach(p => p.remove());
+
+                const particles = [
+                    ...createParticles(shell, 5, 'a'),
+                    ...createParticles(shell, 5, 'b'),
+                    ...createParticles(shell, 5, 'c')
+                ];
+
+                setTimeout(() => {
+                    particles.forEach(p => {
+                        const type = p.dataset.type;
+                        if (type === 'a') p.style.transform = `translateY(-200px)`;
+                        else if (type === 'c') p.style.transform = `translateY(200px)`;
+                        else {
+                            // Some B move towards side draw
+                            p.style.transform = `translateX(150px) translateY(${Math.random()*40-20}px)`;
+                        }
+                    });
+                     // Contamination!
+                    const contaminantA = shell.querySelector('.particle-a');
+                    const contaminantC = shell.querySelector('.particle-c');
+                    if(contaminantA) contaminantA.style.transform = `translateX(150px) translateY(0px)`;
+                    if(contaminantC) contaminantC.style.transform = `translateX(150px) translateY(0px)`;
+                }, 100);
+
+                setTimeout(() => {
+                    contamLabel.style.opacity = '1';
+                }, 2000);
+
+                setTimeout(() => {
+                    contamLabel.style.opacity = '0';
+                    document.getElementById('play-sidedraw-container').style.display = 'block';
+                }, 6000);
+            };
+            
+            const dwcAnimation = () => {
+                const container = document.getElementById('dwc-animation-container');
+                const shell = document.getElementById('dwc-shell');
+                const wallLabel = document.getElementById('wall-label');
+                container.querySelectorAll('.particle').forEach(p => p.remove());
+
+                const particles = [
+                    ...createParticles(shell, 5, 'a'),
+                    ...createParticles(shell, 5, 'b'),
+                    ...createParticles(shell, 5, 'c')
+                ];
+
+                particles.forEach(p => {
+                    p.style.left = `${Math.random() * 30 + 10}%`; // Position on feed side
+                });
+
+                setTimeout(() => {
+                    wallLabel.style.opacity = '1';
+                    particles.forEach(p => {
+                        const type = p.dataset.type;
+                        if (type === 'a') p.style.transform = `translateY(-200px) translateX(${Math.random()*40+20}px)`;
+                        else if (type === 'c') p.style.transform = `translateY(200px) translateX(${Math.random()*40+20}px)`;
+                        else p.style.transform = `translateX(150px) translateY(${Math.random()*40-20}px)`;
+                    });
+                }, 100);
+                
+                setTimeout(() => {
+                    wallLabel.style.opacity = '0';
+                    document.getElementById('play-dwc-container').style.display = 'block';
+                }, 4200);
+
+            };
+
+            document.getElementById('play-conventional').addEventListener('click', (e) => {
+                e.currentTarget.parentElement.style.display = 'none';
+                conventionalAnimation();
+            });
+            
+            document.getElementById('play-sidedraw').addEventListener('click', (e) => {
+                e.currentTarget.parentElement.style.display = 'none';
+                sideDrawAnimation();
+            });
+
+            document.getElementById('play-dwc').addEventListener('click', (e) => {
+                e.currentTarget.parentElement.style.display = 'none';
+                dwcAnimation();
+            });
+
+
+            const createChart = (ctx, label, data1, data2) => {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Conventional Baseline', 'DWC'],
+                        datasets: [{
+                            label: label,
+                            data: [data1, data2],
+                            backgroundColor: ['#fca5a5', '#6ee7b7'],
+                            borderColor: ['#ef4444', '#10b981'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let value = context.raw;
+                                        if (context.label === 'Conventional Baseline') {
+                                            return `Baseline: 100%`;
+                                        }
+                                        return `DWC: ${value}% (a ${100-value}% saving)`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: { beginAtZero: true, max: 110 }
+                        }
+                    }
+                });
+            };
+
+            const chartObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const canvasId = entry.target.id;
+                        if (!entry.target.dataset.rendered) {
+                             if (canvasId === 'energyChart') createChart(entry.target.getContext('2d'), 'Energy Use', 100, 65);
+                             if (canvasId === 'capexChart') createChart(entry.target.getContext('2d'), 'Capital Cost', 100, 75);
+                             if (canvasId === 'footprintChart') createChart(entry.target.getContext('2d'), 'Plant Footprint', 100, 50);
+                             if (canvasId === 'tacChart') createChart(entry.target.getContext('2d'), 'Total Annualized Cost', 100, 65);
+                             entry.target.dataset.rendered = 'true';
+                             observer.unobserve(entry.target);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('canvas').forEach(canvas => {
+                chartObserver.observe(canvas);
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
